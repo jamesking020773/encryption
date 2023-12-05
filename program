@@ -1,0 +1,28 @@
+from crypto import *
+from functions import get_file_contents
+
+if __name__ == '__main__':
+  # example code
+  # mixed alphabet substitution
+  message = get_file_contents('encrypted.txt')
+  print(decrypt_mixed_sub(message))
+
+  # rot cipher
+  message = "hello"
+  key = 2
+  encrypted = encrypt_rot(message, key)
+  print(encrypted)
+  decrypted = decrypt_rot(encrypted, key)
+  print(decrypted)
+
+  # xor cipher
+  message = "goodbye"
+  key = "T"
+  encrypted = encrypt_xor(message, key)
+  print(encrypted)
+  decrypted = decrypt_xor(encrypted, key)
+  print(decrypted)
+  
+  # vigenere cipher
+  message = "the cat in the hat sat on the mat"
+  key = "secret"
