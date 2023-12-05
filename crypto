@@ -1,0 +1,57 @@
+from functions import *
+
+def encrypt_rot(message, key):
+  encrypted = ''
+  for character in message:
+    encrypted += rotate_number_key(character, key)
+  return encrypted
+
+def decrypt_rot(message, key):
+  return encrypt_rot(message, -key)
+
+def encrypt_xor(message, key):
+  encrypted = ''
+  for character in message:
+    encrypted = encrypted + xor(character, key)
+  return encrypted
+
+def decrypt_xor(message, key):
+  return encrypt_xor(message, key)
+
+def encrypt_mixed_sub(plaintext, sub=sub):
+  encrypted = ''
+  for letter in plaintext:
+    encrypted = encrypted + sub[letter]
+  return encrypted
+
+def decrypt_mixed_sub(encrypted, sub=sub):
+  decrypted = ''
+  for letter in encrypted:
+    decrypted = decrypted + sub[letter]
+  return decrypted
+
+def encrypt_vigenere(message, key):
+  encrypted = ""
+  counter = 0
+  for i in range(len(message)):
+    letter = message[i]
+    if letter.islower():
+      subkey = key[counter % len(key)]
+      encrypted = encrypted + rotate_alpha_key(letter, subkey, '+')
+      counter += 1
+    else:
+      encrypted = encrypted + letter
+  return encrypted
+
+def decrypt_vigenere(message, key):
+  decrypted = ""
+  counter = 0
+  for i in range(len(message)):
+    letter = message[i]
+    if letter.islower():
+      subkey = key[counter % len(key)]
+      decrypted = decrypted + rotate_alpha_key(letter, subkey, '-')
+      counter += 1
+    else:
+      decrypted = decrypted + letter
+  return decrypted
